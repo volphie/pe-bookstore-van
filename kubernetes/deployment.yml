@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: van
-          image: username/van:latest
+          image: admin14acr.azurecr.io/pe-bookstore-van:latest
           ports:
             - containerPort: 8080
           readinessProbe:
