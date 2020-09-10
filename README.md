@@ -10,12 +10,6 @@
 * 결재 이력은 별도의 CQRS 서비스로 구현하고 결제 메시지가 전달되서 저장되도록 한다.  
 ```
 
-## 아키텍처
-```
-* 모든 요청은 단일 접점을 통해 이뤄진다.
-
-```
-
 ## Cloud Native Application Model
 ![Alt text](model.PNG?raw=true "Optional Title")
 
