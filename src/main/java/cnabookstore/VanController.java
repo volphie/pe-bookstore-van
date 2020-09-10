@@ -22,7 +22,7 @@ public class VanController {
             Thread.sleep(10000);
             //throw new RuntimeException("CircuitBreaker!!!");
         } else {
-
+            System.out.println("@@@ Success!!!");
         }
     }
 
