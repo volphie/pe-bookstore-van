@@ -10,6 +10,11 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 @RestController
 public class VanController {
 
+    boolean flag;
+
+    public VanController(){
+        flag = true;
+    }
 
     @GetMapping("/requestPayment")
     @HystrixCommand(fallbackMethod = "fallBackPayment", commandProperties = {
@@ -21,7 +26,7 @@ public class VanController {
         if (payment == 0) {
             System.out.println("@@@ CircuitBreaker!!!");
             Thread.sleep(10000);
-            //throw new RuntimeException("CircuitBreaker!!!");
+            throw new RuntimeException("CircuitBreaker!!!");
         } else {
             System.out.println("@@@ Success!!!");
         }
@@ -31,9 +36,24 @@ public class VanController {
         System.out.println("### fallback!!!");
 //        return "CircuitBreaker!!!";
     }
-    @GetMapping("/test")
-    public void test(){
-        System.out.println("test !!!");
+    @GetMapping("/isHealthy")
+    public void test() throws Exception {
+        if (flag) {
+            System.out.println("health.... !!!");
+        }
+        else{
+            throw new Exception("Zombie...");
+        }
+    }
+
+    @GetMapping("/makeZombie")
+    public void zombie(){
+        flag = false;
+    }
+
+    @GetMapping("/isReady")
+    public void ready(){
+        System.out.println("System is ready.... !!!");
     }
 
 }
