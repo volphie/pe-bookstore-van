@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: van
+  labels:
+    app: van
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: van
+  template:
+    metadata:
+      labels:
+        app: van
+    spec:
+      containers:
+        - name: van
+          image: admin14acr.azurecr.io/pe-bookstore-van:latest
+          ports:
+            - containerPort: 8080
+#          readinessProbe:
+#            httpGet:
+#              path: '/isReady'
+#              port: 8080
+#            initialDelaySeconds: 10
+#            timeoutSeconds: 2
+#            periodSeconds: 5
+#            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/isHealthy'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
