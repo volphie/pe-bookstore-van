@@ -185,9 +185,9 @@ CircuitBeaker 발생
 		- 10000ms(10sec) 
 ```
 
-```
-실행 결과
 
+실행 결과
+```
 root@httpie:/# http http://van:8080/requestPayment?payment=100
 HTTP/1.1 200 
 Content-Length: 17
@@ -255,6 +255,7 @@ application.yaml 파일 설정 변경
   siege -c10 -t60S -v 'http://gateway:8080/requestPayment?payment=1000'
 ```
 ### 점검 결과
+```
 root@labs--1357583724:~# kubectl get hpa van -w
 NAME   REFERENCE        TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 van    Deployment/van   1%/30%    1         10        1          19s
@@ -268,7 +269,7 @@ van    Deployment/van   1%/30%    1         10        1          8m23s
 van    Deployment/van   1%/30%    1         10        1          9m23s
 van    Deployment/van   1%/30%    1         10        1          11m
 van    Deployment/van   1%/30%    1         10        1          12m
-
+```
 
 ## Readiness Probe 점검
 ### 설정 확인
