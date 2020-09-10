@@ -17,6 +17,7 @@ public class VanController {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000")
     })
     public void requestPayment(@RequestParam long payment) throws InterruptedException {
+        System.out.println("@@@ requestPayment!!!");
         if (payment == 0) {
             System.out.println("@@@ CircuitBreaker!!!");
             Thread.sleep(10000);
@@ -29,11 +30,6 @@ public class VanController {
     public String fallBackPayment(long payment ){
         System.out.println("### fallback!!!");
         return "CircuitBreaker!!!";
-    }
-
-    @GetMapping("/test")
-    public void test( ){
-        System.out.println("TEST");
     }
 
 }
