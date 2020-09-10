@@ -12,7 +12,7 @@ public class VanController {
 
 
     @GetMapping("/requestPayment")
-    @HystrixCommand(fallbackMethod = "fallbackDelivery", commandProperties = {
+    @HystrixCommand(fallbackMethod = "fallBackPayment", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000")
     })
@@ -27,9 +27,13 @@ public class VanController {
         }
     }
 
-    public String fallBackPayment(long payment ){
+    public void fallBackPayment(long payment ){
         System.out.println("### fallback!!!");
-        return "CircuitBreaker!!!";
+//        return "CircuitBreaker!!!";
+    }
+    @GetMapping("/test")
+    public void test(){
+        System.out.println("test !!!");
     }
 
 }
