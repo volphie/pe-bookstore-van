@@ -195,7 +195,7 @@ Hystrix Command
 	5000ms 이상 Timeout 발생 시 CircuitBearker 발동
 
 CircuitBeaker 발생
-	http http://van:8080/requestPayment?deliveryId=1
+	http http://van:8080/requestPayment?payment=0
 		- 잘못된 쿼리 수행 시 CircuitBeaker
 		- 10000ms(10sec) Sleep 수행
 		- 5000ms Timeout으로 CircuitBeaker 발동
@@ -205,29 +205,21 @@ CircuitBeaker 발생
 ```
 실행 결과
 
-root@httpie:/# http http://delivery:8080/selectDeliveryInfo?deliveryId=1
-HTTP/1.1 200 
-Content-Length: 7
-Content-Type: text/plain;charset=UTF-8
-Date: Wed, 09 Sep 2020 04:27:53 GMT
-
-Shipped
-
-root@httpie:/# http http://delivery:8080/selectDeliveryInfo?deliveryId=0
+root@httpie:/# http http://van:8080/requestPayment?payment=100
 HTTP/1.1 200 
 Content-Length: 17
 Content-Type: text/plain;charset=UTF-8
-Date: Wed, 09 Sep 2020 04:28:03 GMT
+Date: Thu, 10 Sep 2020 05:11:56 GMT
 
-CircuitBreaker!!!
+PAYMENT_COMPLETED
 
-root@httpie:/# http http://delivery:8080/selectDeliveryInfo?deliveryId=1
+root@httpie:/# http http://van:8080/requestPayment?payment=0  
 HTTP/1.1 200 
-Content-Length: 17
+Content-Length: 14
 Content-Type: text/plain;charset=UTF-8
-Date: Wed, 09 Sep 2020 04:28:06 GMT
+Date: Thu, 10 Sep 2020 05:12:12 GMT
 
-CircuitBreaker!!!
+PAYMENT_FAILED
 
 ```
 소스 코드
