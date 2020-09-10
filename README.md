@@ -163,7 +163,19 @@ transfer-encoding: chunked
     }
 ```
 
-## CI/CD 점검
+## CI/CD 점검 ==> Deployment 확인
+```
+# watch kubectl get pods
+Every 2.0s: kubectl get pods          labs--1357583724: Thu Sep 10 06:05:13 2020
+
+NAME                              READY   STATUS    RESTARTS   AGE
+gateway-db9bdbdb7-nknzs           1/1     Running   0          4h39m
+httpie                            1/1     Running   0          19h
+order-56fb5bb9d6-57g2m            1/1     Running   0          5h46m
+payment-57ddfb8576-wlldx          1/1     Running   0          101m
+paymenthistory-5654c5447f-tphnn   1/1     Running   0          4h40m
+van-c5fd5c97d-4qxdd               1/1     Running   0          57m  
+```
 
 ## Circuit Breaker 점검
 
