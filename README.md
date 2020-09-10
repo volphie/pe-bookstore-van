@@ -190,28 +190,7 @@ CircuitBeaker 발생
 		- 5000ms Timeout으로 CircuitBeaker 발동
 		- 10000ms(10sec) 
 ```
-
-
-실행 결과
-```
-root@httpie:/# http http://van:8080/requestPayment?payment=100
-HTTP/1.1 200 
-Content-Length: 17
-Content-Type: text/plain;charset=UTF-8
-Date: Thu, 10 Sep 2020 05:11:56 GMT
-
-PAYMENT_COMPLETED
-
-root@httpie:/# http http://van:8080/requestPayment?payment=0  
-HTTP/1.1 200 
-Content-Length: 14
-Content-Type: text/plain;charset=UTF-8
-Date: Thu, 10 Sep 2020 05:12:12 GMT
-
-PAYMENT_FAILED
-
-```
-소스 코드
+### 소스 코드
 ```
     @GetMapping("/requestPayment")
     @HystrixCommand(fallbackMethod = "fallBackPayment", commandProperties = {
@@ -237,7 +216,25 @@ PAYMENT_FAILED
     }
 
 ```
+### 실행 결과
+```
+root@httpie:/# http http://van:8080/requestPayment?payment=100
+HTTP/1.1 200 
+Content-Length: 17
+Content-Type: text/plain;charset=UTF-8
+Date: Thu, 10 Sep 2020 05:11:56 GMT
 
+PAYMENT_COMPLETED
+
+root@httpie:/# http http://van:8080/requestPayment?payment=0  
+HTTP/1.1 200 
+Content-Length: 14
+Content-Type: text/plain;charset=UTF-8
+Date: Thu, 10 Sep 2020 05:12:12 GMT
+
+PAYMENT_FAILED
+
+```
 ## Autoscale 점검
 ### 설정 확인
 ```
