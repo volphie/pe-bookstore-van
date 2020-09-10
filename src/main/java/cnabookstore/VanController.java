@@ -31,4 +31,9 @@ public class VanController {
         return "CircuitBreaker!!!";
     }
 
+    @GetMapping("/test")
+    public void test( ){
+        System.out.println("TEST");
+    }
+
 }
