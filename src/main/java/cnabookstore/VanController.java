@@ -17,7 +17,7 @@ public class VanController {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000")
     })
     public void requestPayment(@RequestParam long payment) throws InterruptedException {
-        if (payment <= 0) {
+        if (payment == 0) {
             System.out.println("@@@ CircuitBreaker!!!");
             Thread.sleep(10000);
             //throw new RuntimeException("CircuitBreaker!!!");
