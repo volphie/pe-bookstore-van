@@ -235,7 +235,7 @@ PAYMENT_FAILED
 ## Autoscale 점검
 ### 설정 확인
 ```
-application.yaml 파일 설정 변경
+deployment.yaml 파일 설정 변경
 (https://k8s.io/examples/application/php-apache.yaml 파일 참고)
  resources:
   limits:
